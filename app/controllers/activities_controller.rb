@@ -27,6 +27,13 @@ rescue_from ActiveRecord::RecordInvalid,with: :render_record_invalid
         render json: activity_for_update, status: :accepted
     end
 
+    #DELETE destroy 
+    def destroy 
+        activity_to_be_deleted = find_activity
+        activity_to_be_deleted.destroy 
+        head :no_content
+    end
+
 
     private
 
