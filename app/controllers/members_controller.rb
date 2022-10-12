@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :render_record_not_found_response
+wrap_parameters format: []
 
  #GET index
     def index 
