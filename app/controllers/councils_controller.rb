@@ -1,4 +1,5 @@
 class CouncilsController < ApplicationController
+rescue_from ActiveRecord::RecordNotFound,with: :render_record_not_found_response 
 
     wrap_parameters false
    #GET index 
@@ -16,6 +17,10 @@ class CouncilsController < ApplicationController
     private 
     def find_council_member 
         Council.find(params[:id])
+    end
+
+    def render_record_not_found_response 
+        render json: { error: 'Council-member Not Found' }, status: :not_found
     end
 
 end
