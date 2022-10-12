@@ -16,15 +16,22 @@ rescue_from ActiveRecord::RecordInvalid,with: :render_record_invalid
 
     #POST create /activies 
     def create 
-        new_activity = activity_params
+        new_activity = Activity.create!(activity_params)
         render json: new_activity, status: :created
+    end
+
+    #PATCH update /:id
+    def update 
+        activity_for_update = find_activity
+        activity_for_update.update!(activity_params)
+        render json: activity_for_update, status: :accepted
     end
 
 
     private
 
     def activity_params 
-        Activity.create!(params.permit(:title,:venue,:event_date,:description))
+        params.permit(:title,:venue,:event_date,:description)
     end
 
     def render_record_invalid(invalid)
