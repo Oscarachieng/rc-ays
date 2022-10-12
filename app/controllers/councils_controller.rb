@@ -22,6 +22,13 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid_response
         render json: member_info, status: :created
     end
 
+    #PATCH update /:id 
+    def update 
+        council_member_for_update = find_council_member 
+        council_member_for_update.update!(council_member_params)
+        render json: council_member_for_update, status: :accepted
+    end
+
     private 
     def find_council_member 
         Council.find(params[:id])
