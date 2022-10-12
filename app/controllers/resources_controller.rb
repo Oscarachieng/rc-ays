@@ -40,6 +40,6 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid_response
     end
 
     def render_record_invalid_response(invalid) 
-        render json: { errors: invalid.record.errors.full_messages }
+        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 end
