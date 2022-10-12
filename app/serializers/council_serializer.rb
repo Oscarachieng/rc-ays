@@ -1,3 +1,3 @@
 class CouncilSerializer < ActiveModel::Serializer
-  attributes :id, :memeber_id, :role, :responsibilities
+  attributes :id, :member_id, :role, :responsibilities
 end
