@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound,with: :render_not_found_response
+rescue_from ActiveRecord::RecordInvalid,with: :render_record_invalid
  wrap_parameters false
   #GET index /activities
     def index 
@@ -24,6 +25,10 @@ rescue_from ActiveRecord::RecordNotFound,with: :render_not_found_response
 
     def activity_params 
         Activity.create!(params.permit(:title,:venue,:event_date,:description))
+    end
+
+    def render_record_invalid(invalid)
+        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 
     def find_activity 
