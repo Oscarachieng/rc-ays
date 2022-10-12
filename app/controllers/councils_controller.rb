@@ -29,6 +29,13 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid_response
         render json: council_member_for_update, status: :accepted
     end
 
+    #DELETE destroy /:id
+    def destroy 
+        delete_council = find_council_member 
+        delete_council.destroy 
+        head :no_content
+    end
+
     private 
     def find_council_member 
         Council.find(params[:id])
