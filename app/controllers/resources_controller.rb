@@ -20,6 +20,13 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid_response
         new_resource = Resource.create!(resource_params)
         render json: new_resource, status: :created
     end
+
+    #PATCH update 
+    def update 
+        resource_for_update = find_resource 
+        resource_for_update.update!(resource_params)
+        render json: resource_for_update, status: :accepted
+    end
     
 
 
@@ -31,7 +38,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid_response
     end
 
     def resource_params 
-        params.permit(:title,:description,:image_url,:theme)
+        params.permit(:title,:summary,:image_url,:theme)
     end
 
 
