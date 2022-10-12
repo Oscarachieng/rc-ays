@@ -1,3 +1,3 @@
 class ResourceSerializer < ActiveModel::Serializer
-  attributes :id, :title, :summary, :image_url, :theme
+  attributes :id, :title, :description, :image_url, :theme
 end

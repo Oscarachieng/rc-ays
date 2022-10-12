@@ -27,6 +27,13 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid_response
         resource_for_update.update!(resource_params)
         render json: resource_for_update, status: :accepted
     end
+
+    #DELETE destroy 
+    def destroy 
+        resource_to_delete = find_resource 
+        resource_to_delete.destroy
+        head :no_content
+    end
     
 
 
@@ -38,7 +45,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid_response
     end
 
     def resource_params 
-        params.permit(:title,:summary,:image_url,:theme)
+        params.permit(:title,:description,:image_url,:theme)
     end
 
 
