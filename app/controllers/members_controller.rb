@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+rescue_from ActiveRecord::RecordNotFound, with: :render_record_not_found_response
 
  #GET index
     def index 
@@ -27,6 +28,10 @@ class MembersController < ApplicationController
 
    def find_member 
      Member.find(params[:id])
+   end
+
+   def render_record_not_found_response 
+     render json: { error: "Record not Found" }, status: :not_found
    end
 
 
