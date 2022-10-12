@@ -6,6 +6,12 @@ class MembersController < ApplicationController
         render json: members, status: :ok
     end
 
+  #GET show 
+  def show 
+    member = find_member 
+    render json: member, status: :ok
+  end   
+
 #POST create 
 
 #PATCH update 
