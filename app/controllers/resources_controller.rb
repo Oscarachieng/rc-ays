@@ -15,6 +15,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_record_not_found
     end
 
     #POST create
+    def create 
+        new_resource = Resource.create!(resource_params)
+        render json: new_resource, status: :created
+    end
     
 
 
@@ -24,6 +28,11 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_record_not_found
         params[:id]
         )
     end
+
+    def resource_params 
+        params.permit(:title,:description,:image_url,:theme)
+    end
+
 
     def render_record_not_found 
         render json: { error: "Resource Not Found" }, status: :not_found
