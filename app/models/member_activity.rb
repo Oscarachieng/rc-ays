@@ -1,0 +1,2 @@
+class MemberActivity < ApplicationRecord
+end

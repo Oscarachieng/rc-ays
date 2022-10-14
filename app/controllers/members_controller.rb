@@ -25,6 +25,22 @@ wrap_parameters format: []
      head :no_content
    end
 
+   # /me
+   def show
+    user = Member.find_by(id: session[:user_id])
+    if user
+      render json: user
+    else
+      render json: { error: "Not authorized" }, status: :unauthorized
+    end
+  end
+
+  # logout 
+  def destroy
+    session.delete :user_id
+    head :no_content
+  end
+
    private 
 
    def find_member 
