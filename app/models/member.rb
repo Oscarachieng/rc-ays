@@ -8,6 +8,7 @@ class Member < ApplicationRecord
     validates :password_confirmation, presence: true
 
     #Associations 
+    has_one :council, dependent: :destroy
     has_many :member_activities
     has_many :activities, through: :member_activities
 end
