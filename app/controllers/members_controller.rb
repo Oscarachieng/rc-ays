@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :render_record_not_found_response
+rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid_response
 wrap_parameters format: []
 
  #GET index
@@ -15,6 +16,10 @@ wrap_parameters format: []
   end   
 
 #POST create 
+   def create 
+    new_member = Member.create!(member_params)
+    render json: new_member, status: :created
+   end
 
 #PATCH update 
 
@@ -42,6 +47,14 @@ wrap_parameters format: []
   end
 
    private 
+
+   def member_params 
+     params.permit(:first_name, :last_name, :estate, :password, :password_confirmation, :email)
+   end
+
+   def render_record_invalid_response(invalid) 
+     render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+   end
 
    def find_member 
      Member.find(params[:id])
