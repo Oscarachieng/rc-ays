@@ -3,5 +3,7 @@ class Activity < ApplicationRecord
     validates :title, length: {maximum: 50}
     validates :description, length: { minimum: 100 }
     
-    
+    #Associations 
+    has_many :member_activities 
+    has_many :members,through: :member_activities
 end

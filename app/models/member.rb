@@ -6,5 +6,8 @@ class Member < ApplicationRecord
     validates :email, presence: true
     validates :password, confirmation: true 
     validates :password_confirmation, presence: true
-   
+
+    #Associations 
+    has_many :member_activities
+    has_many :activities, through: :member_activities
 end
