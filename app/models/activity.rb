@@ -5,5 +5,6 @@ class Activity < ApplicationRecord
     
     #Associations 
     has_many :member_activities 
+    has_many :activity_registrations, dependent: :destroy
     has_many :members,through: :member_activities
 end

@@ -40,16 +40,12 @@ wrap_parameters format: []
     end
   end
 
-  # logout 
-  def destroy
-    session.delete :user_id
-    head :no_content
-  end
+  
 
    private 
 
    def member_params 
-     params.permit(:first_name, :last_name, :estate, :password, :password_confirmation, :email)
+     params.permit(:first_name, :last_name, :estate, :password, :password_confirmation, :email, :image_url)
    end
 
    def render_record_invalid_response(invalid) 

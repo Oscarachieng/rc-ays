@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    wrap_parameters false
 
     def create
         user = Member.find_by(email: params[:email])
@@ -9,4 +10,10 @@ class SessionsController < ApplicationController
           render json: { error: "Invalid username or password" }, status: :unauthorized
         end
       end
+
+      # logout 
+  def destroy
+    session.delete :user_id
+    head :no_content
+  end
 end
