@@ -16,14 +16,3 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
 end
 
 
-# Rails.application.config.middleware.insert_before 0, Rack::Cors do
-#   allow do
-#     origins 'https://rc-ays.herokuapp.com'
-#     resource '/members',
-#       :headers => :any,
-#       :methods => [:post]
-#     resource '/users',
-#       headers: :any,
-#       methods: [:get, :post, :put, :patch, :delete, :options, :head]
-#   end
-# end

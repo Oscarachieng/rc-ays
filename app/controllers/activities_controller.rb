@@ -9,7 +9,9 @@ rescue_from ActiveRecord::RecordInvalid,with: :render_record_invalid
     end
 
     #GET show  activities/:id 
+     
     def show 
+
         activity_needed = find_activity
         render json: activity_needed, status: :ok
     end
