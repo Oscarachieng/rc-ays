@@ -5,11 +5,24 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins "https://rc-ays.herokuapp.com/"
+
+    resource "*",
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
+end
+
+
 # Rails.application.config.middleware.insert_before 0, Rack::Cors do
 #   allow do
-#     origins "example.com"
-#
-#     resource "*",
+#     origins 'https://rc-ays.herokuapp.com'
+#     resource '/members',
+#       :headers => :any,
+#       :methods => [:post]
+#     resource '/users',
 #       headers: :any,
 #       methods: [:get, :post, :put, :patch, :delete, :options, :head]
 #   end
